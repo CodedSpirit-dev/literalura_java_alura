@@ -1,5 +1,6 @@
 package com.aluracursos.literalura.main;
 
+import com.aluracursos.literalura.repository.BooksRepository;
 import com.aluracursos.literalura.service.ApiConsumer;
 import com.aluracursos.literalura.service.DataProcessor;
 
@@ -16,7 +17,10 @@ public class Main {
     private static final ApiConsumer apiConsumer = new ApiConsumer();
     // Service for processing the data
     private static final DataProcessor dataProcessor = new DataProcessor();
-    // List to store the book data
-    private final List<BooksData> booksDataList = new ArrayList<>();
+    //Add repository for data persistence
+    private final BooksRepository booksRepository;
 
+    public Main(BooksRepository booksRepository) {
+        this.booksRepository = booksRepository;
+    }
 }
