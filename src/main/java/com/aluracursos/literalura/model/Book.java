@@ -19,7 +19,7 @@ public class Book {
     private Languages languages;
     private Integer downloads;
 
-    public Book() {
+    public Book(String title, List<String> languages, Integer downloads, List<Author> authors) {
     }
 
     public Book ( List<BooksData> results ) {
