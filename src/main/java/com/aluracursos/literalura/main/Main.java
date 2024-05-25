@@ -3,6 +3,7 @@ package com.aluracursos.literalura.main;
 import com.aluracursos.literalura.model.Author;
 import com.aluracursos.literalura.model.Book;
 import com.aluracursos.literalura.model.Data;
+import com.aluracursos.literalura.model.Languages;
 import com.aluracursos.literalura.repository.BooksRepository;
 import com.aluracursos.literalura.service.ApiConsumer;
 import com.aluracursos.literalura.service.DataProcessor;
@@ -116,7 +117,7 @@ public class Main {
     private void findBooksByLanguages() {
         System.out.println("Ingrese el idioma: ");
         String language = scanner.nextLine();
-        List<Book> books = booksRepository.findAllBooksByLanguages(language);
+        List<Book> books = booksRepository.findByLanguages(Languages.valueOf(language.toUpperCase()));
         books.stream()
                 .sorted(Comparator.comparing(Book::getTitle))
                 .forEach(System.out::println);
