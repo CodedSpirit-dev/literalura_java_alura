@@ -1,5 +1,6 @@
 package com.aluracursos.literalura;
 
+import com.aluracursos.literalura.main.Main;
 import com.aluracursos.literalura.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +20,8 @@ public class LiteraluraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		var data = new Main(booksRepository);
+		data.showMenu();
 
 	}
 }

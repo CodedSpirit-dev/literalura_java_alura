@@ -1,5 +1,6 @@
 package com.aluracursos.literalura.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,17 +9,19 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @JsonProperty("birth_year")
     private Integer birthYear;
+
+    @JsonProperty("death_year")
     private Integer deathYear;
+
     @ManyToOne
     private Book book;
 
-    public Author() {
-    }
-
-    public Author(Author author) {
-    }
+    public Author() {}
 
     public Author(String name, Integer birthYear, Integer deathYear, Book book) {
         this.name = name;
@@ -68,11 +71,7 @@ public class Author {
     }
 
     @Override
-    public String toString () {
-        return
-                "name='" + name + '\'' +
-                        ", birthYear=" + birthYear +
-                        ", deathYear=" + deathYear;
+    public String toString() {
+        return String.format("Author{name='%s', birthYear=%d, deathYear=%d}", name, birthYear, deathYear);
     }
-
 }

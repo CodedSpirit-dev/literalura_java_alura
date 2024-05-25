@@ -2,10 +2,11 @@ package com.aluracursos.literalura.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
-public class DataProcessor implements  IDataProcessor{
-    //ObjectMapper for processing JSON
-    private ObjectMapper objectMapper = new ObjectMapper();
+@Service
+public class DataProcessor implements IDataProcessor {
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public <T> T obtainData(String json, Class<T> tClass) {

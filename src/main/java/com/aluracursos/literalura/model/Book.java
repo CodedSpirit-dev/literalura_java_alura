@@ -11,27 +11,25 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String title;
+
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Author> authors;
+    private List<Author> authors = new ArrayList<>();
+
     @Enumerated(EnumType.STRING)
     private Languages languages;
     private Integer downloads;
 
+    public Book() {}
+
     public Book(String title, List<String> languages, Integer downloads, List<Author> authors) {
-    }
-
-    public Book ( List<BooksData> results ) {
-    }
-
-    public Book (String title, List<String> languages, Integer downloads, List<AuthorsData> authors ) {
         this.title = title;
         this.languages = Languages.fromString(languages.get(0));
         this.downloads = downloads;
-        this.authors = new ArrayList<>();
-        for (AuthorsData authorsData : authors) {
-            Author author = new Author(authorsData.name(), authorsData.birthYear(), authorsData.deathYear(), this);
+        for (Author author : authors) {
+            author.setBook(this);
             this.authors.add(author);
         }
     }
@@ -74,5 +72,10 @@ public class Book {
 
     public void setDownloads(Integer downloads) {
         this.downloads = downloads;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Book{title='%s', languages=%s, downloads=%d}", title, languages, downloads);
     }
 }
