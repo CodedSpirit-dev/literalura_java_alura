@@ -76,10 +76,10 @@ public class Main {
         //Print the book if it is present
         book.ifPresentOrElse(
                 b -> {
-                    System.out.println("Libro encontrado: " + b.getTitle());
+                    System.out.println("Found book: " + b.getTitle());
                     booksRepository.save(b);
                 },
-                () -> System.out.println("Libro no encontrado")
+                () -> System.out.println("Book not found.")
         );
         return book;
     }
